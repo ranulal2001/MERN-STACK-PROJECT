@@ -22,17 +22,16 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler("Invalid file type. Please upload a PNG file.", 400)
     );
   }
-  const cloudinaryResponse = await cloudinary.uploader.upload(
-    resume.tempFilePath
-  );
+  // const cloudinaryResponse = await cloudinary.uploader.upload(
+  //   resume.tempFilePath
+  // );
 
-  if (!cloudinaryResponse || cloudinaryResponse.error) {
-    console.error(
-      "Cloudinary Error:",
-      cloudinaryResponse.error || "Unknown Cloudinary error"
-    );
-    return next(new ErrorHandler("Failed to upload Resume to Cloudinary", 500));
-  }
+  // if (!cloudinaryResponse || cloudinaryResponse.error) {
+  //   console.error(
+  //     "RANu error"
+  //   );
+  //   return next(new ErrorHandler("Failed to upload Resume to Cloudinary", 500));
+  // }
   const { name, email, coverLetter, phone, address, jobId } = req.body;
   const applicantID = {
     user: req.user._id,
@@ -70,10 +69,14 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
     address,
     applicantID,
     employerID,
-    resume: {
-      public_id: cloudinaryResponse.public_id,
-      url: cloudinaryResponse.secure_url,
-    },
+    resume:{
+      public_id: '123',
+      url: '123',
+    }
+    // resume: {
+    //   public_id: cloudinaryResponse.public_id,
+    //   url: cloudinaryResponse.secure_url,
+    // },
   });
   res.status(200).json({
     success: true,
