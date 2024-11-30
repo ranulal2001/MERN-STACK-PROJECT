@@ -14,7 +14,7 @@ config({ path: "./config/config.env" });
 
 app.use(
   cors({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173',"https://mern-deploy-6ume.onrender.com/"],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
